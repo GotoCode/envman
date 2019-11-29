@@ -51,7 +51,7 @@ def main():
             print('Error: Could not find ~/envs/{}.env'.format(name))
             sys.exit()
 
-        with open('{}/{}'.format(ENVS_PATH, name), 'r') as src:
+        with open('{}/{}.env'.format(ENVS_PATH, name), 'r') as src:
             out = src.read()
             print(out)
 
