@@ -20,9 +20,9 @@ def main():
 
         name = sys.argv[2]
         with open('.env', 'r') as src:
-            with open('envs/{}.env'.format(name), 'w') as dest:
+            with open('~/envs/{}.env'.format(name), 'w') as dest:
                 dest.write(src.read())
-                print('Saved .env to envs/{}.env'.format(name))
+                print('Saved .env to ~/envs/{}.env'.format(name))
 
     elif sys.argv[1] == 'load':
         if len(sys.argv) < 3:
@@ -30,23 +30,18 @@ def main():
             sys.exit()
 
         name = sys.argv[2]
-        if not os.path.exists('envs/{}.env'.format(name)):
-            print('Error: Could not find envs/{}.env'.format(name))
+        if not os.path.exists('~/envs/{}.env'.format(name)):
+            print('Error: Could not find ~/envs/{}.env'.format(name))
             sys.exit()
 
-        with open('envs/{}.env'.format(name), 'r') as src:
+        with open('~/envs/{}.env'.format(name), 'r') as src:
             with open('.env', 'w') as dest:
                 dest.write(src.read())
-                print('Loaded .env from envs/{}.env'.format(name))
+                print('Loaded .env from ~/envs/{}.env'.format(name))
 
     else:
         print('Usage: envman [create <name> | load <name>]')
         sys.exit()
 
 if __name__ == '__main__':
-    try:
-        os.makedirs('envs')
-    except FileExistsError:
-        pass
-
     main()
