@@ -9,7 +9,7 @@ ENVS_PATH = os.path.expanduser('~/envs')
 
 def main():
     if len(sys.argv) <= 1:
-        print('Usage: envman [create <name> | load <name>]')
+        print('Usage: envman [create <name> | load <name> | show <name>]')
         sys.exit()
 
     if sys.argv[1] == 'create':
@@ -42,8 +42,21 @@ def main():
                 dest.write(src.read())
                 print('Loaded .env from ~/envs/{}.env'.format(name))
 
+    elif sys.argv[1] == 'show':
+        if len(sys.argv) < 3:
+            print('Error: Please specify a name for the .env file to show')
+
+        name = sys.argv[2]
+        if not os.path.exists('{}/{}.env'.format(ENVS_PATH, name)):
+            print('Error: Could not find ~/envs/{}.env'.format(name))
+            sys.exit()
+
+        with open('{}/{}'.format(ENVS_PATH, name), 'r') as src:
+            out = src.read()
+            print(out)
+
     else:
-        print('Usage: envman [create <name> | load <name>]')
+        print('Usage: envman [create <name> | load <name> | show <name>]')
         sys.exit()
 
 if __name__ == '__main__':
