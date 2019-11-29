@@ -1,6 +1,6 @@
 # envman
 
-`envman` (short for ".**env** **man**ager") is a command-line utility for creating and managing mutliple `.env` files.
+`envman` (short for ".**env** **man**ager") is a command-line utility for creating and managing multiple `.env` files.
 
 ## Installation
 
