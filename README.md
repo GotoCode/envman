@@ -29,6 +29,7 @@ $ ./uninstall.sh
 
 * `envman create <name>` - Create and save a file called `<name>.env`, based on the `.env` file in the current directory
 * `envman load <name>` -  Load the file `<name>.env` into the `.env` file in the current directory
+* `envman show <name>` - Print out the contents of the file `<name>.env`
 
 ## Data Storage
 
