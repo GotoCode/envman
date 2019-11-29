@@ -4,6 +4,9 @@ import sys
 import os
 
 
+ENVS_PATH = os.path.expanduser('~/envs')
+
+
 def main():
     if len(sys.argv) <= 1:
         print('Usage: envman [create <name> | load <name>]')
@@ -20,7 +23,7 @@ def main():
 
         name = sys.argv[2]
         with open('.env', 'r') as src:
-            with open('~/envs/{}.env'.format(name), 'w') as dest:
+            with open('{}/{}.env'.format(ENVS_PATH, name), 'w') as dest:
                 dest.write(src.read())
                 print('Saved .env to ~/envs/{}.env'.format(name))
 
@@ -30,11 +33,11 @@ def main():
             sys.exit()
 
         name = sys.argv[2]
-        if not os.path.exists('~/envs/{}.env'.format(name)):
+        if not os.path.exists('{}/{}.env'.format(ENVS_PATH, name)):
             print('Error: Could not find ~/envs/{}.env'.format(name))
             sys.exit()
 
-        with open('~/envs/{}.env'.format(name), 'r') as src:
+        with open('{}/{}.env'.format(ENVS_PATH, name), 'r') as src:
             with open('.env', 'w') as dest:
                 dest.write(src.read())
                 print('Loaded .env from ~/envs/{}.env'.format(name))
